@@ -25,3 +25,10 @@ app.get( '/', function ( req, res ) {
 app.listen( 3000, function () {
     console.log( 'App listening on port 3000!' );
 });
+
+var request = require( 'request' );
+request( 'https://www.leboncoin.fr/ventes_immobilieres/1076257949.htm?ca=12_s', function ( error, response, body ) {
+    if ( !error && response.statusCode == 200 ) {
+        console.log( body ) // Show the HTML for the Google homepage.
+    }
+})
