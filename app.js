@@ -41,22 +41,34 @@ function callleboncoin() {
                 price: parseInt( $( lbcDataArray.get( 0 ) ).text().replace( /\s/g, '' ), 10 ),
                 city: $( lbcDataArray.get( 1 ) ).text().trim().toLowerCase().replace( /\s/g, '-' ),
                 type: $( lbcDataArray.get( 2 ) ).text().trim().toLowerCase(),
-                surface: parseInt( $( lbcDataArray.get( 4 ) ).text().replace( /\s/g, '' ), 10 )
+                surface: parseInt( $( lbcDataArray.get( 4 ) ).text().replace( /\s/g, '' ), 10 ),
             }
             console.log( lbcData )
         }
         else {
             console.log( error )
         }
-    }
+    })
+}
+
+
+app.get( '/', function ( req, res ) {
+
+    var url = 'req.query.urlLBC' //url = url de la page html home.js
+
+    //console.log( req.query )
+    callLeboncoin();
+
+    res.render( 'home', {
+        message: 'The Home Page!'
+    });
 
 
 
+    //launch the server on the 3000 port
+    app.listen( 3000, function () {
+        console.log( 'App listening on port 3000!' );
+    });
 
-
-/*var request = require( 'request' );
-request( 'https://www.leboncoin.fr/ventes_immobilieres/1087631966.htm?ca=12_s', function ( error, response, body ) {
-    if ( !error && response.statusCode == 200 ) {
-        console.log( body ) // Show the HTML for the Google homepage.
-    }*/
+    // execution = npm run start (dans git bash)
 })
